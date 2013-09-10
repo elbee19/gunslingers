@@ -18,6 +18,7 @@ javac gunslinger/sim/Gunslinger.java
 In your project directory, run
 
 java gunslinger.sim.Gunslinger <playerlist> <num of enermies> <num of friends> <gui> <recompile> <verbose> <trace> <games>
+java gunslinger.sim.Gunslinger 7 2 2 true true true true 5
 
 Arguments:
 - playerlist: list of players
