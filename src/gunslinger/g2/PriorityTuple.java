@@ -24,9 +24,10 @@ public class PriorityTuple {
 }
 
 class PriorityTupleComparator implements Comparator<PriorityTuple> {
+	//If return value is positive it means that the first object has higher priority
 	@Override
 	public int compare(PriorityTuple p1, PriorityTuple p2) {
 		
-		return p1.getPriority()-p2.getPriority();
+		return (p1.getPriority()-p2.getPriority());
 	}
 }

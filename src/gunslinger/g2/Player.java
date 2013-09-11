@@ -16,14 +16,12 @@ public class Player extends gunslinger.sim.Player
     private int[] enemies;
     
     //Book-keeping variables
-    PriorityQueue<PriorityTuple> priorityList=new  PriorityQueue<PriorityTuple>(10, new PriorityTupleComparator());
+    PriorityQueue<PriorityTuple> priorityList;
     
     //May not use these variables later
-    boolean shootable[];
-    int roundNumber;
+    //boolean shootable[];
     
     // name of the team
-    //
     public String name()
     {
         return "g2" + (versions > 1 ? " v" + version : "");
@@ -33,10 +31,10 @@ public class Player extends gunslinger.sim.Player
     //
     public void init(int nplayers, int[] friends, int enemies[])
     {
-    	 this.roundNumber=1;
     	 this.nplayers = nplayers;
          this.friends = friends.clone();
          this.enemies = enemies.clone();
+         priorityList=new  PriorityQueue<PriorityTuple>(10, new PriorityTupleComparator());
     }
 
     
@@ -50,13 +48,12 @@ public class Player extends gunslinger.sim.Player
     //
     public int shoot(int[] prevRound, boolean[] alive)
     {
-    	
-    	
         if(prevRound==null)
         {
-        	return -1;
+        	return -1; //Make love, not war
         }
         
+        //printPrevRound(prevRound);
         int[] shotAt=new int[prevRound.length];
         
         for(int player=0;player<prevRound.length;player++)
@@ -73,9 +70,6 @@ public class Player extends gunslinger.sim.Player
         
         int myTarget=getMyTarget(shotAt);
         priorityList.clear();
-        
-    	roundNumber++;
-    	attentionSeekingPrint(roundNumber+"");
     	
         return myTarget;
     }
@@ -114,11 +108,13 @@ public class Player extends gunslinger.sim.Player
 
 	private void gaugeSeverity(int shooter,int target, boolean[] alive) {
 		
-		if(target==-1)
+		System.out.println(shooter+" "+target);
+		
+		if(target==-1 || shooter==this.id)
 			return;
 		
     	//If x -> y, p1
-    	if(target==this.id)
+    	if(target==this.id && !isFriend(shooter))
     	{
     		priorityList.add(new PriorityTuple(shooter, 1));
     	}
@@ -139,28 +135,28 @@ public class Player extends gunslinger.sim.Player
     	//If n -> e, p4
     	else if(!isFriend(shooter)&&!isEnemy(shooter)&&isEnemy(target)&&alive[target])
     	{
-    		priorityList.add(new PriorityTuple(target, 4));
+    		priorityList.add(new PriorityTuple(target,7));
     	}
     	
     	//If n -> f, p5
     	else if(!isFriend(shooter)&&!isEnemy(shooter)&&isFriend(target)&&alive[target])
     	{
     		if(alive[shooter])
-    			priorityList.add(new PriorityTuple(shooter,5));
+    			priorityList.add(new PriorityTuple(shooter,6));
     	}
     	
-    	//If e -> n, p6
+    	//If e -> n, 
     	else if(!isFriend(target)&&!isEnemy(target)&&isEnemy(shooter))
     	{
-    		if(alive[target])
-    			priorityList.add(new PriorityTuple(target, 6));
+    		if(alive[shooter])
+    			priorityList.add(new PriorityTuple(shooter, 4));
     	}
     	
-    	//If f -> n, p7
+    	//If f -> n, 
     	else if(isFriend(shooter)&&!isEnemy(target)&&!isFriend(target))
     	{
     		if(alive[target])
-    			priorityList.add(new PriorityTuple(target, 7));
+    			priorityList.add(new PriorityTuple(target, 5));
     	}
     	
     	
@@ -187,10 +183,16 @@ public class Player extends gunslinger.sim.Player
     	return false;
     }
     
-    public void clearShootable()
+    
+    public void printPrevRound(int[] a)
     {
-    	Arrays.fill(shootable, false);
+    	String s="";
+    	for(int i=0;i<a.length;i++)
+    	{
+    		s+="["+i+","+a[i]+"]";
+    	}
+    	
+    	attentionSeekingPrint(s);
     }
-
 
 }
