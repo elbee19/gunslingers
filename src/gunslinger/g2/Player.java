@@ -18,6 +18,10 @@ public class Player extends gunslinger.sim.Player
     //Book-keeping variables
     PriorityQueue<PriorityTuple> priorityList;
     
+	//bingyi-build the dynamic 2D table to record history
+    List<List<Integer>> record = new ArrayList<List<Integer>>();
+    //bingyi 
+
     //May not use these variables later
     //boolean shootable[];
     
@@ -34,6 +38,12 @@ public class Player extends gunslinger.sim.Player
     	 this.nplayers = nplayers;
          this.friends = friends.clone();
          this.enemies = enemies.clone();
+         
+         for(int i=0;i<nplayers;i++)
+         {
+         	record.add(new ArrayList<Integer>());
+         }
+         
          priorityList=new  PriorityQueue<PriorityTuple>(10, new PriorityTupleComparator());
     }
 
@@ -61,6 +71,10 @@ public class Player extends gunslinger.sim.Player
         	if(prevRound[player]!=-1)
         		shotAt[prevRound[player]]++;
         	gaugeSeverity(player,prevRound[player],alive);
+        	
+        	//bingyi
+        	record.get(player).add(prevRound[player]);
+		
         }
         
         if(priorityList.size()==0)
@@ -70,7 +84,9 @@ public class Player extends gunslinger.sim.Player
         
         int myTarget=getMyTarget(shotAt);
         priorityList.clear();
-    	
+    	//bingyi
+	printMatrix(record);
+	//bingyi		
         return myTarget;
     }
     
@@ -194,5 +210,13 @@ public class Player extends gunslinger.sim.Player
     	
     	attentionSeekingPrint(s);
     }
+    public void printMatrix(List<List<Integer>> m)
+    {
+    //try{
+        int rows = m.size();
+        int columns = m.get(0).size();
+        String str = "|\t";
 
+    }
+    
 }

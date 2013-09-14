@@ -17,8 +17,7 @@ javac gunslinger/sim/Gunslinger.java
 2. Run the simulator
 In your project directory, run
 
-java gunslinger.sim.Gunslinger <playerlist> <num of enermies> <num of friends> <gui> <recompile> <verbose> <trace> <games>s
-java gunslinger.sim.Gunslinger players.list 2 2 true true true true 6
+java gunslinger.sim.Gunslinger <playerlist> <num of enermies> <num of friends> <gui> <recompile> <verbose> <trace> <games>
 
 Arguments:
 - playerlist: list of players
@@ -40,7 +39,7 @@ You can also change the default parameters in Gunslinger.java.
 
 
 4. Zip and upload your player
-Create a zip file g[1-10].zip that includes all the .java files under your g[1-10] directory. Do NOT put the g[1-10] directory itself in the zip.
+Create a zip file g[1-10].zip that includes the g[1-10] directory.
 Upload the zip file into the according directory.
 
 5. Report bugs of the simulator
