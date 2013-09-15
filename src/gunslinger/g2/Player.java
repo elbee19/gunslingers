@@ -14,7 +14,7 @@ public class Player extends gunslinger.sim.Player
     private int nplayers;
     private int[] friends;
     private int[] enemies;
-    
+    static int next_round[][];
     //Book-keeping variables
     PriorityQueue<PriorityTuple> priorityList;
     //bingyi-build the dynamic 2D table to record history
@@ -47,6 +47,7 @@ public class Player extends gunslinger.sim.Player
          priorityList=new PriorityQueue<PriorityTuple>(10, new PriorityTupleComparator());
          //yash
          prediction=new int[this.nplayers][this.nplayers];
+         next_round=new int[this.nplayers][this.nplayers];
          
     }
 
@@ -83,7 +84,8 @@ public class Player extends gunslinger.sim.Player
         
         //yash
         //call prediction function here
-        prediction=predictNextRound(record, alive);
+        predictNextRound(next_round,record, alive);
+        prediction=next_round.clone();
         
         //Printing the prediction array returned
         for(int i=0;i<prediction.length;i++)
@@ -182,11 +184,11 @@ public class Player extends gunslinger.sim.Player
     }
     
     //bingyi
-	public int[][] predictNextRound(List<List<Integer>> m, boolean[] alive)	
+	public void predictNextRound(int[][] next_round, List<List<Integer>> m, boolean[] alive)	
 	{
 		int columns = m.get(0).size();
 		int rows = m.size();
-		int[][] next_round = new int[rows][rows];
+//		int[][] next_round = new int[rows][rows];
 		//if someone shoot the other last round, most likely the other will shot back next_round
 		for (int i=0; i<rows;i++){
 			if (m.get(i).get(columns-1) != -1) {
@@ -214,7 +216,7 @@ public class Player extends gunslinger.sim.Player
 				}
 			}
 		}
-		return next_round;
+//		return next_round;
 	}
 	
 	public void printpredict(int[][] m){
