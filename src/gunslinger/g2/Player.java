@@ -67,7 +67,8 @@ public class Player extends gunslinger.sim.Player
         {
         	return -1; //Make love, not war
         }
-         
+        
+        System.out.println(Arrays.toString(friends));
         //printPrevRound(prevRound);
         int[] shotAt=new int[prevRound.length];
         
@@ -97,8 +98,6 @@ public class Player extends gunslinger.sim.Player
         	System.out.println();
         }
         
-//        int target=-1;
-//        Queue<Integer> likely_targets=new LinkedList<Integer>();
         int popular_target[]=new int[prevRound.length];
         int players[]=new int[prevRound.length];
         
@@ -121,9 +120,19 @@ public class Player extends gunslinger.sim.Player
         {
         	//add more weight if an enemy shot you in the previous round
         	if(prevRound[i]==this.id && isEnemy(i) && alive[i])
-        		popular_target[i]+=5;
+        		popular_target[i]+=7;
+        	//add less weight if a neutral tried to shoot you
         	else if(prevRound[i]==this.id && isNeutral(i) && alive[i])
-        		popular_target[i]+=3; //add less weight if a neutral tried to shoot you
+        		popular_target[i]+=4; 
+        	//add more weight to an enemy who shot your friend
+        	else if(isFriend(prevRound[i]) && isEnemy(i) && alive[i] && alive[prevRound[i]])
+        		popular_target[i]+=3;
+        	//neutral who shot a friend
+        	else if(isFriend(prevRound[i]) && isNeutral(i) && alive[i] && alive[prevRound[i]])
+        		popular_target[i]+=2; 
+        	//add weight to an enemy previously shot by a friend
+        	else if(isEnemy(prevRound[i]) && isFriend(i) && alive[i] && alive[prevRound[i]])
+        		popular_target[i]+=5;
         	//above conditions assume that friends don't shoot you
         }
         
