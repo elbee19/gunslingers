@@ -109,6 +109,9 @@ public class Player extends gunslinger.sim.Player
         	}
         }
         
+        //d
+        System.out.println("Typical "+Arrays.toString(next_round_sum));
+        
         for(int player=0;player<prevRound.length;player++)
         {
         	if(prevRound[player]!=-1)
@@ -186,7 +189,10 @@ public class Player extends gunslinger.sim.Player
         
         //if no enemies or neutrals are to be shot at
         if(priorityList.size()==0)
-        	return -1;
+        {
+        	 priorityList.clear();
+        	 return -1;
+        }
         //yash
         
         
@@ -209,6 +215,8 @@ public class Player extends gunslinger.sim.Player
         	}	
         }
         
+        
+        priorityList.clear();
         return target;
         
         
@@ -328,7 +336,7 @@ public class Player extends gunslinger.sim.Player
 			priorityList.add(new PriorityTuple(shooter,RET));
 
 		//enemy shot by someone not shot
-		if(isEnemy(target) && (!shotAt[shooter] || !alive[shotBy[shooter]]) && alive[shooter])
+		if(isEnemy(target) && (!shotAt[shooter] || !alive[shotBy[shooter]]) && alive[shooter] && alive[target])
 			priorityList.add(new PriorityTuple(target, SEC_PRI));
 		
 
@@ -482,6 +490,5 @@ public class Player extends gunslinger.sim.Player
     private double RETAL_PROB=1;
     private double SHOOT_AGAIN_PROB=0.4;
     private double THRESHOLD=0.2;
-    
     
 }
