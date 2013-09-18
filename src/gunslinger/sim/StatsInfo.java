@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 
 class StatsInfo
 {
-	public final boolean console=true;
+	public final boolean console=false;
 	
 	int nplayers;
 	int games;

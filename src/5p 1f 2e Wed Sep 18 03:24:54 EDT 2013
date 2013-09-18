@@ -1,0 +1,177 @@
+P 1:1 - 27.0%, 2 - 4.0%, 3 - 37.0%, 4 - 20.0%, 5 - 12.0%, 
+P 2:1 - 49.0%, 2 - 6.0%, 3 - 27.0%, 4 - 14.0%, 5 - 4.0%, 
+P 3:1 - 30.0%, 2 - 3.0%, 3 - 37.0%, 4 - 21.0%, 5 - 9.0%, 
+P 4:1 - 50.0%, 2 - 6.0%, 3 - 18.0%, 4 - 18.0%, 5 - 8.0%, 
+P 5:1 - 41.0%, 2 - 5.0%, 3 - 32.0%, 4 - 16.0%, 5 - 6.0%, 
+
+Streaks distribution:
+1 1500, 2 82, 3 14, 4 5, 9 3, 10 2, 11 1
+Average no of rounds = 13.74
+Stats for All Players: 
+totalShotsFired= 1225 
+atWhoShotYou= 358 / 29.22 
+atWhoWasShot= 603 / 49.22 
+atWhoShotFriend= 172 / 14.04 
+atWhoWasShotByFriend= 119 / 9.71 
+atWhoDidNotShoot= 484 / 39.51 
+
+
+atEnemy= 1010 
+atEnemyWhoShotYou= 243 / 24.06 
+atEnemyWhoWasShot= 481 / 47.62 
+atEnemyWhoShotFriend= 125 / 12.38 
+atEnemyWhoWasShotByFriend= 78 / 7.72 
+atEnemyWhoDidNotShoot= 463 / 45.84 
+atNeutral= 215 
+atNeutralWhoShotYou= 115 / 53.49 
+atNeutralWhoWasShot= 122 / 56.74 
+atNeutralWhoShotFriend= 47 / 21.86 
+atNeutralWhoWasShotByFriend= 41 / 19.07 
+atNeutralWhoDidNotShoot= 21 / 9.77 
+atFriend= 0 
+noShotsFired= 347 
+noShotsWhenNotShotBefore= 138 
+noShotsWhenEnemyWasShot= 110 
+noShotsWhenFriendWasShot= 55 
+noShotsWhenFriendWasShooting= 84 
+
+Stats for g9: 
+totalShotsFired= 275 
+atWhoShotYou= 0 / 0.00 
+atWhoWasShot= 0 / 0.00 
+atWhoShotFriend= 0 / 0.00 
+atWhoWasShotByFriend= 0 / 0.00 
+atWhoDidNotShoot= 0 / 0.00 
+
+
+atEnemy= 232 
+atEnemyWhoShotYou= 55 / 23.71 
+atEnemyWhoWasShot= 106 / 45.69 
+atEnemyWhoShotFriend= 33 / 14.22 
+atEnemyWhoWasShotByFriend= 23 / 9.91 
+atEnemyWhoDidNotShoot= 109 / 46.98 
+atNeutral= 43 
+atNeutralWhoShotYou= 17 / 39.53 
+atNeutralWhoWasShot= 23 / 53.49 
+atNeutralWhoShotFriend= 21 / 48.84 
+atNeutralWhoWasShotByFriend= 14 / 32.56 
+atNeutralWhoDidNotShoot= 3 / 6.98 
+atFriend= 0 
+noShotsFired= 51 
+noShotsWhenNotShotBefore= 16 
+noShotsWhenEnemyWasShot= 11 
+noShotsWhenFriendWasShot= 8 
+noShotsWhenFriendWasShooting= 13 
+
+Stats for g8: 
+totalShotsFired= 205 
+atWhoShotYou= 0 / 0.00 
+atWhoWasShot= 0 / 0.00 
+atWhoShotFriend= 0 / 0.00 
+atWhoWasShotByFriend= 0 / 0.00 
+atWhoDidNotShoot= 0 / 0.00 
+
+
+atEnemy= 173 
+atEnemyWhoShotYou= 50 / 28.90 
+atEnemyWhoWasShot= 81 / 46.82 
+atEnemyWhoShotFriend= 21 / 12.14 
+atEnemyWhoWasShotByFriend= 16 / 9.25 
+atEnemyWhoDidNotShoot= 77 / 44.51 
+atNeutral= 32 
+atNeutralWhoShotYou= 23 / 71.88 
+atNeutralWhoWasShot= 18 / 56.25 
+atNeutralWhoShotFriend= 3 / 9.38 
+atNeutralWhoWasShotByFriend= 6 / 18.75 
+atNeutralWhoDidNotShoot= 4 / 12.50 
+atFriend= 0 
+noShotsFired= 70 
+noShotsWhenNotShotBefore= 24 
+noShotsWhenEnemyWasShot= 22 
+noShotsWhenFriendWasShot= 9 
+noShotsWhenFriendWasShooting= 19 
+
+Stats for g7: 
+totalShotsFired= 218 
+atWhoShotYou= 0 / 0.00 
+atWhoWasShot= 0 / 0.00 
+atWhoShotFriend= 0 / 0.00 
+atWhoWasShotByFriend= 0 / 0.00 
+atWhoDidNotShoot= 0 / 0.00 
+
+
+atEnemy= 181 
+atEnemyWhoShotYou= 46 / 25.41 
+atEnemyWhoWasShot= 87 / 48.07 
+atEnemyWhoShotFriend= 21 / 11.60 
+atEnemyWhoWasShotByFriend= 15 / 8.29 
+atEnemyWhoDidNotShoot= 84 / 46.41 
+atNeutral= 37 
+atNeutralWhoShotYou= 19 / 51.35 
+atNeutralWhoWasShot= 17 / 45.95 
+atNeutralWhoShotFriend= 12 / 32.43 
+atNeutralWhoWasShotByFriend= 5 / 13.51 
+atNeutralWhoDidNotShoot= 1 / 2.70 
+atFriend= 0 
+noShotsFired= 76 
+noShotsWhenNotShotBefore= 32 
+noShotsWhenEnemyWasShot= 29 
+noShotsWhenFriendWasShot= 8 
+noShotsWhenFriendWasShooting= 13 
+
+Stats for g6: 
+totalShotsFired= 258 
+atWhoShotYou= 0 / 0.00 
+atWhoWasShot= 0 / 0.00 
+atWhoShotFriend= 0 / 0.00 
+atWhoWasShotByFriend= 0 / 0.00 
+atWhoDidNotShoot= 0 / 0.00 
+
+
+atEnemy= 217 
+atEnemyWhoShotYou= 51 / 23.50 
+atEnemyWhoWasShot= 108 / 49.77 
+atEnemyWhoShotFriend= 22 / 10.14 
+atEnemyWhoWasShotByFriend= 12 / 5.53 
+atEnemyWhoDidNotShoot= 97 / 44.70 
+atNeutral= 41 
+atNeutralWhoShotYou= 17 / 41.46 
+atNeutralWhoWasShot= 28 / 68.29 
+atNeutralWhoShotFriend= 3 / 7.32 
+atNeutralWhoWasShotByFriend= 9 / 21.95 
+atNeutralWhoDidNotShoot= 5 / 12.20 
+atFriend= 0 
+noShotsFired= 75 
+noShotsWhenNotShotBefore= 34 
+noShotsWhenEnemyWasShot= 28 
+noShotsWhenFriendWasShot= 17 
+noShotsWhenFriendWasShooting= 20 
+
+Stats for g2: 
+totalShotsFired= 269 
+atWhoShotYou= 0 / 0.00 
+atWhoWasShot= 0 / 0.00 
+atWhoShotFriend= 0 / 0.00 
+atWhoWasShotByFriend= 0 / 0.00 
+atWhoDidNotShoot= 0 / 0.00 
+
+
+atEnemy= 207 
+atEnemyWhoShotYou= 41 / 19.81 
+atEnemyWhoWasShot= 99 / 47.83 
+atEnemyWhoShotFriend= 28 / 13.53 
+atEnemyWhoWasShotByFriend= 12 / 5.80 
+atEnemyWhoDidNotShoot= 96 / 46.38 
+atNeutral= 62 
+atNeutralWhoShotYou= 39 / 62.90 
+atNeutralWhoWasShot= 36 / 58.06 
+atNeutralWhoShotFriend= 8 / 12.90 
+atNeutralWhoWasShotByFriend= 7 / 11.29 
+atNeutralWhoDidNotShoot= 8 / 12.90 
+atFriend= 0 
+noShotsFired= 75 
+noShotsWhenNotShotBefore= 32 
+noShotsWhenEnemyWasShot= 20 
+noShotsWhenFriendWasShot= 13 
+noShotsWhenFriendWasShooting= 19 
+
