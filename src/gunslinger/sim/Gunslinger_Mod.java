@@ -25,6 +25,7 @@ public class Gunslinger_Mod
 	//-
 	int[][] relationships;
 	ArrayList<int[]> gameInfo;
+	ArrayList<boolean[]> aliveHistory;
 	//int[] gameRank;
 	
 	
@@ -231,7 +232,7 @@ public class Gunslinger_Mod
         int nplayers = playerNames.length;
         
         //-
-        StatsInfo sinfo=new StatsInfo(nplayers, games, playerNames);
+        StatsInfo sinfo=new StatsInfo(nplayers, games, playerNames); //Third parameter is overwritten later.
         
         // check parameters
         if (nenemies + nfriends >= nplayers) {
@@ -261,6 +262,9 @@ public class Gunslinger_Mod
                 Player[] players = loadPlayers(playerPath);
                 shufflePlayers(players);
                 
+                //-
+                sinfo.setPlayerNames(players);
+                
                 // Create and initialize the game
                 Gunslinger_Mod game = new Gunslinger_Mod(nenemies, nfriends, players);
                 game.init();
@@ -284,7 +288,6 @@ public class Gunslinger_Mod
             printRanks(ranks);
             
             sinfo.write(nplayers+"p "+nfriends+"f "+nenemies+"e "+(new Date()).toString());
-            
             
             // Force stopping all pending threads
             System.exit(0);
@@ -366,6 +369,7 @@ public class Gunslinger_Mod
         
         //-
         this.gameInfo=new ArrayList<int[]>();
+        this.aliveHistory=new ArrayList<boolean[]>();
     }
 
     // Initialize the game   
@@ -798,7 +802,10 @@ public class Gunslinger_Mod
             
         if (verbose)
             System.err.println("-------------------------");
- 
+        
+        //-
+        aliveHistory.add(alive.clone());
+        
         // update game stats
         for (int p = 0; p != nplayers; ++p) {
             if (alive[p] && bullets[p] > 1) {

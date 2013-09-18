@@ -1,4 +1,4 @@
-package gunslinger.g2;
+package gunslinger.g2Old;
 
 import java.util.Comparator;
 
