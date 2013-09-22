@@ -59,8 +59,9 @@ public class Player extends gunslinger.sim.Player
         /* Strategy used by the dumb player:
            Decide whether to shoot or not with a fixed shoot rate
            If decided to shoot, randomly pick one alive that is not your friend */
-                
+        return -1;
         // Shoot or not in this round?
+        /*
         boolean shoot = gen.nextDouble() < ShootRate;
 
         if (!shoot)
@@ -76,7 +77,7 @@ public class Player extends gunslinger.sim.Player
         
         int target = targets.get(gen.nextInt(targets.size()));
 
-        return target;
+        return target;*/
     }
 
 

@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/*
+ * 
+ * author: Amit Ruparel
+ */
+
 class StatsInfo
 {
 	public final boolean console=false;
@@ -45,16 +50,15 @@ class StatsInfo
 	
 	public void setPlayerNames(Player[] players)
 	{
-		int i=0;
 		for(Player p: players)
 		{
-			playerNames[i]=p.name();
-			playerShotStats[i].setName(p.name());
-			i++;
+			playerNames[p.index]=p.name();
+			playerShotStats[p.index].setName(p.name());
+			
 		}
 	}
 
-	public void process(Gunslinger_Mod game) {
+	public void process(Gunslinger_Mod game, Player[] playersArr) {
 		// TODO Auto-generated method stub
 		
 		int[] rank=game.rank().clone();
@@ -63,11 +67,13 @@ class StatsInfo
 		int[] gameRank=game.rank().clone();
 		int[][] relationships=game.relationships.clone();
 		
+		/*int[][] playerToHost=game.getPlayerToHost();
+		int[][] hostToPlayer=game.getHostToPlayer();*/
 		
 		try
 		{
-			processRank(gameRank);
-			processHistory(gameInfo,relationships,aliveHistory);
+			processRank(gameRank,playersArr);
+			processHistory(gameInfo,relationships,aliveHistory,playersArr);
 		}
 		catch(Exception e)
 		{
@@ -117,13 +123,13 @@ class StatsInfo
 		
 	}
 	
-	public void processRank(int[] gameRank)
+	public void processRank(int[] gameRank,  Player[] playersArr)
 	{
 		System.out.println(Arrays.toString(gameRank));
 		
 		for(int i=0;i<gameRank.length;i++)
 		{
-			ranks[i][gameRank[i]]++;
+			ranks[playersArr[i].index][gameRank[playersArr[i].index]]++;
 		}
 		
 		for(int[] a: ranks)
@@ -131,7 +137,7 @@ class StatsInfo
 
 	}
 	
-	public void processHistory(ArrayList<int[]> gameInfo, int[][] relationships, ArrayList<boolean[]> aliveHistory)
+	public void processHistory(ArrayList<int[]> gameInfo, int[][] relationships, ArrayList<boolean[]> aliveHistory,  Player[] playersArr)
 	{	
 		int prevRound[]=null;
 		int currRound[]=null;
@@ -148,7 +154,7 @@ class StatsInfo
 			
 			for(int shooter=0;shooter<nplayers;shooter++)
 			{
-				System.out.println(String.format("Round %s, shooter %s shot %s / %d",round,shooter,currRound[shooter],playerShotStats[shooter].noShotsFired));
+				System.out.println(String.format("Round %s, shooter %s shot %s / %d",round,playersArr[shooter].name(),currRound[shooter]==-1?-1:playersArr[currRound[shooter]].name(),playerShotStats[playersArr[shooter].index].noShotsFired));
 				
 				
 				//Calculate streaks
@@ -179,7 +185,7 @@ class StatsInfo
 				}
 				
 				//Fill in the ShotsStats object
-				processShot(shooter,currRound[shooter],relationships,prevRound,currRound,aliveHistory,round);
+				processShot(shooter,currRound[shooter],relationships,prevRound,currRound,aliveHistory,round,playersArr);
 			}
 			
 			prevRound=currRound;
@@ -189,7 +195,7 @@ class StatsInfo
 		
 	}
 	
-	public void processShot(int shooter, int target,int[][] relationships,int[] prevRound,int[] currRound, ArrayList<boolean[]> aliveHistory, int round)
+	public void processShot(int shooter, int target,int[][] relationships,int[] prevRound,int[] currRound, ArrayList<boolean[]> aliveHistory, int round, Player[] playersArr)
 	{
 		assert currRound[shooter]==target;
 		//playerShotStats;
@@ -218,125 +224,125 @@ class StatsInfo
 			
 			//Processing
 			allShotStats.totalShotsFired++;
-			playerShotStats[shooter].totalShotsFired++;
+			playerShotStats[playersArr[shooter].index].totalShotsFired++;
 			if(atEnemy)
 			{
 				allShotStats.atEnemy++;
-				playerShotStats[shooter].atEnemy++;
+				playerShotStats[playersArr[shooter].index].atEnemy++;
 				
 				if(atWhoShotYou)
 				{
 					allShotStats.atWhoShotYou++;
 					allShotStats.atEnemyWhoShotYou++;
-					playerShotStats[shooter].atEnemyWhoShotYou++;
+					playerShotStats[playersArr[shooter].index].atEnemyWhoShotYou++;
 					
 
 					System.out.println("blahh-"+allShotStats.atWhoShotYou);
-					System.out.println("2blahh-"+playerShotStats[shooter].atEnemyWhoShotYou);
+					System.out.println("2blahh-"+playerShotStats[playersArr[shooter].index].atEnemyWhoShotYou);
 				}
 				if(atWhoWasShot)
 				{
 					allShotStats.atWhoWasShot++;
 					allShotStats.atEnemyWhoWasShot++;
-					playerShotStats[shooter].atEnemyWhoWasShot++;
+					playerShotStats[playersArr[shooter].index].atEnemyWhoWasShot++;
 				}
 				if(atWhoShotFriend)
 				{
 					allShotStats.atWhoShotFriend++;
 					allShotStats.atEnemyWhoShotFriend++;
-					playerShotStats[shooter].atEnemyWhoShotFriend++;
+					playerShotStats[playersArr[shooter].index].atEnemyWhoShotFriend++;
 				}
 				if(atWhoWasShotByFriend)
 				{
 					allShotStats.atWhoWasShotByFriend++;
 					allShotStats.atEnemyWhoWasShotByFriend++;
-					playerShotStats[shooter].atEnemyWhoWasShotByFriend++;
+					playerShotStats[playersArr[shooter].index].atEnemyWhoWasShotByFriend++;
 				}
 				if(atWhoDidNotShoot)
 				{
 					allShotStats.atWhoDidNotShoot++;
 					allShotStats.atEnemyWhoDidNotShoot++;
-					playerShotStats[shooter].atEnemyWhoDidNotShoot++;
+					playerShotStats[playersArr[shooter].index].atEnemyWhoDidNotShoot++;
 				}
 			}
 			else if(atFriend)
 			{
 				
 				allShotStats.atFriend++;
-				playerShotStats[shooter].atFriend++;
+				playerShotStats[playersArr[shooter].index].atFriend++;
 				
 				if(atWhoShotYou)
 				{
 					allShotStats.atWhoShotYou++;
 					allShotStats.atFriendWhoShotYou++;
-					playerShotStats[shooter].atFriendWhoShotYou++;
+					playerShotStats[playersArr[shooter].index].atFriendWhoShotYou++;
 					
 					System.out.println("blahh-"+allShotStats.atWhoShotYou);
-					System.out.println("2blahh-"+playerShotStats[shooter].atFriendWhoShotYou);
+					System.out.println("2blahh-"+playerShotStats[playersArr[shooter].index].atFriendWhoShotYou);
 				}
 				if(atWhoWasShot)
 				{
 					allShotStats.atWhoWasShot++;
 					allShotStats.atFriendWhoWasShot++;
-					playerShotStats[shooter].atFriendWhoWasShot++;
+					playerShotStats[playersArr[shooter].index].atFriendWhoWasShot++;
 				}
 				if(atWhoShotFriend)
 				{
 					allShotStats.atWhoShotFriend++;
 					allShotStats.atFriendWhoShotFriend++;
-					playerShotStats[shooter].atFriendWhoShotFriend++;
+					playerShotStats[playersArr[shooter].index].atFriendWhoShotFriend++;
 				}
 				if(atWhoWasShotByFriend)
 				{
 					allShotStats.atWhoWasShotByFriend++;
 					allShotStats.atFriendWhoWasShotByFriend++;
-					playerShotStats[shooter].atFriendWhoWasShotByFriend++;
+					playerShotStats[playersArr[shooter].index].atFriendWhoWasShotByFriend++;
 				}
 				if(atWhoDidNotShoot)
 				{
 					allShotStats.atWhoDidNotShoot++;
 					allShotStats.atFriendWhoDidNotShoot++;
-					playerShotStats[shooter].atFriendWhoDidNotShoot++;
+					playerShotStats[playersArr[shooter].index].atFriendWhoDidNotShoot++;
 				}
 			}
 			else if(atNeutral)
 			{
 				allShotStats.atNeutral++;
-				playerShotStats[shooter].atNeutral++;
+				playerShotStats[playersArr[shooter].index].atNeutral++;
 				
 				
 				if(atWhoShotYou)
 				{
 					allShotStats.atWhoShotYou++;
 					allShotStats.atNeutralWhoShotYou++;
-					playerShotStats[shooter].atNeutralWhoShotYou++;
+					playerShotStats[playersArr[shooter].index].atNeutralWhoShotYou++;
 					
 					System.out.println("blahh-"+allShotStats.atWhoShotYou);
-					System.out.println("2blahh-"+playerShotStats[shooter].atNeutralWhoShotYou);
+					System.out.println("2blahh-"+playerShotStats[playersArr[shooter].index].atNeutralWhoShotYou);
 				}
 				if(atWhoWasShot)
 				{
 					allShotStats.atWhoWasShot++;
 					allShotStats.atNeutralWhoWasShot++;
-					playerShotStats[shooter].atNeutralWhoWasShot++;
+					playerShotStats[playersArr[shooter].index].atNeutralWhoWasShot++;
 				}
 				if(atWhoShotFriend)
 				{
 					allShotStats.atWhoShotFriend++;
 					allShotStats.atNeutralWhoShotFriend++;
-					playerShotStats[shooter].atNeutralWhoShotFriend++;
+					playerShotStats[playersArr[shooter].index].atNeutralWhoShotFriend++;
 				}
 				if(atWhoWasShotByFriend)
 				{
 					allShotStats.atWhoWasShotByFriend++;
 					allShotStats.atNeutralWhoWasShotByFriend++;
-					playerShotStats[shooter].atNeutralWhoWasShotByFriend++;
+					playerShotStats[playersArr[shooter].index].atNeutralWhoWasShotByFriend++;
 				}
 				if(atWhoDidNotShoot)
 				{
 					allShotStats.atWhoDidNotShoot++;
 					allShotStats.atNeutralWhoDidNotShoot++;
-					playerShotStats[shooter].atNeutralWhoDidNotShoot++;
+					playerShotStats[playersArr[shooter].index].atNeutralWhoDidNotShoot++;
 				}
 			}
 			
@@ -347,9 +353,9 @@ class StatsInfo
 			if(aliveHistory.get(round)[shooter])
 			{
 				allShotStats.noShotsFired++;
-				playerShotStats[shooter].noShotsFired++;
+				playerShotStats[playersArr[shooter].index].noShotsFired++;
 				
-				System.out.println(String.format("%s did not shoot - %d",playerNames[shooter],playerShotStats[shooter].noShotsFired));
+				System.out.println(String.format("%s did not shoot - %d",playerNames[shooter],playerShotStats[playersArr[shooter].index].noShotsFired));
 				
 				boolean noShotsWhenNotShotBefore=false;
 				boolean noShotsWhenEnemyWasShot=false;
@@ -371,22 +377,22 @@ class StatsInfo
 				if(noShotsWhenNotShotBefore)
 				{
 					allShotStats.noShotsWhenNotShotBefore++;
-					playerShotStats[shooter].noShotsWhenNotShotBefore++;
+					playerShotStats[playersArr[shooter].index].noShotsWhenNotShotBefore++;
 				}
 				if(noShotsWhenEnemyWasShot)
 				{
 					allShotStats.noShotsWhenEnemyWasShot++;
-					playerShotStats[shooter].noShotsWhenEnemyWasShot++;
+					playerShotStats[playersArr[shooter].index].noShotsWhenEnemyWasShot++;
 				}
 				if(noShotsWhenFriendWasShot)
 				{
 					allShotStats.noShotsWhenFriendWasShot++;
-					playerShotStats[shooter].noShotsWhenFriendWasShot++;
+					playerShotStats[playersArr[shooter].index].noShotsWhenFriendWasShot++;
 				}
 				if(noShotsWhenFriendWasShooting)
 				{
 					allShotStats.noShotsWhenFriendWasShooting++;
-					playerShotStats[shooter].noShotsWhenFriendWasShooting++;
+					playerShotStats[playersArr[shooter].index].noShotsWhenFriendWasShooting++;
 				}
 				
 			
